@@ -96,6 +96,24 @@ const questions = [
       correct_answer: "Java",
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
+    {
+        category: "Science: Computers",
+        type: "multiple",
+        difficulty: "medium",
+        question:
+          "Who is Bart's father",
+        correct_answer: "Homer",
+        incorrect_answers: ["Python", "C", "Jakarta"],
+    },
+    {
+        category: "Science: Computers",
+        type: "multiple",
+        difficulty: "difficult",
+        question:
+          "Who wears Barcelona's n. 10 jersey",
+        correct_answer: "Messi",
+        incorrect_answers: ["Python", "C", "Jakarta"],
+    },
   ];
 
 let questionNum = 0
@@ -118,6 +136,8 @@ const divideByDifficulty = (arr) => {
     )
 }
 divideByDifficulty(questions)
+
+const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
 const clearPage = () => document.querySelector('#centered').innerHTML = "" 
 
@@ -201,6 +221,7 @@ const displayQuest = (arrDiff, que) => {
     const newAns = document.createElement('li')
     newAns.innerText = que.correct_answer
     newUl.appendChild(newAns)
+    newAns.classList.add('listItem')
     newAns.onclick = checkIfRight(arrDiff, que)
 
     que.incorrect_answers.forEach(
@@ -208,24 +229,16 @@ const displayQuest = (arrDiff, que) => {
             const newWro = document.createElement('li')
             newWro.innerText = x
             newUl.appendChild(newWro)
+            newWro.classList.add('listItem')
             newWro.onclick = checkIfRight(arrDiff, que)
         }
     )
-}
 
+    for (let i = newUl.children.length; i >= 0; i--) {
+        newUl.appendChild(newUl.children[Math.random() * i | 0])
+    }
+}
 
 window.onload = function () {
     welcomePage()
-    //IF YOU ARE DISPLAYING ALL THE QUESTIONS TOGETHER:
-    //HINT: for each question, create a container with the "question"
-    //create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
-    //when EVERY question has an answer (google for how to get a value from a radio button with JS)
-    //IF YOU ARE DISPLAYING ONE QUESTION AT A TIME
-    //Display first question with a title + radio button
-    //when the user select the answer, pick the next question and remove this from the page after added in a varible the users' choice.
 };
-
-//HOW TO calculate the result
-//You can do it in 2 ways:
-//If you are presenting all questions together, just take all the radio buttons and check if the selected answer === correct_answer
-//If you are presenting one question at a time, just add one point or not to the user score if the selected answer === correct_answer

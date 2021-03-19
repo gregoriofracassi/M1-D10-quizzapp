@@ -1,6 +1,24 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(31, 31, 31);
+}
+
 #centered {
     width: 700px;
-    height: 200px;
-    background-color: rgb(238, 29, 29);
+    height: 400px;
+    background-color: rgb(199, 243, 237);
     margin: 0 auto;
+}
+
+.listItem {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.listItem:hover {
+    color: rgb(0, 138, 103);
+}
+
+input {
+    height: 35px;
 }
